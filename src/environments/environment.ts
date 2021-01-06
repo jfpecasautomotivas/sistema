@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  apiUrl: "http://localhost:8000/api",
-  getInventoryDownUrl: "http://localhost:8000/api/reports/pdf/get-inventory-down-products",
-  downloadInventoryDownUrl: "http://localhost:8000/api/reports/pdf/download-inventory-down-products"
+  apiUrl: "https://erpautopecas.herokuapp.com/api",
+  getInventoryDownUrl: "https://erpautopecas.herokuapp.com/api/reports/pdf/get-inventory-down-products",
+  downloadInventoryDownUrl: "https://erpautopecas.herokuapp.com/api/reports/pdf/download-inventory-down-products"
 };
 
 /*
