@@ -1,61 +1,65 @@
 <div class="row">
-    <div class="section">
-        <div class="col s12 m4 l4 x13">
-            <div class="card gradient-45deg-light-blue-cyan white-text">
-                <div class="card-content">
-                    <div class="row">
-                        <div class="col s7 m7">
-                            <i class="material-icons background-round mt-5">add_shopping_cart</i>
-                            <p>Produtos</p>
-                        </div>
-                        <div class="col s5 m5 right-align">
-                            <h5 class="mb-0">{{productsInfos?.total || '-'}}</h5>
-                        </div>
-                    </div>
-                </div>
+  <div class="section">
+    <div class="col s12 m4 l4 x13">
+      <div class="card gradient-45deg-light-blue-cyan white-text">
+        <div class="card-content">
+          <div class="row">
+            <div class="col s7 m7">
+              <i class="material-icons background-round mt-5"
+                >add_shopping_cart</i
+              >
+              <p>Produtos</p>
             </div>
-        </div>
-        <div class="col s12 m4 l4 x13">
-            <div class="card gradient-45deg-green-teal white-text">
-                <div class="card-content">
-                    <div class="row">
-                        <div class="col s7 m7">
-                            <i class="material-icons background-round mt-5">timeline</i>
-                            <p>Vendas</p>
-                        </div>
-                        <div class="col s5 m5 right-align">
-                            <h5 class="mb-0">{{salesInfos?.total || '-'}}</h5>
-                        </div>
-                    </div>
-                </div>
+            <div class="col s5 m5 right-align">
+              <h5 class="mb-0">{{ productsInfos?.total || "-" }}</h5>
             </div>
+          </div>
         </div>
-        <div class="col s12 m4 l4 x13">
-            <div class="card gradient-45deg-red-pink white-text">
-                <div class="card-content">
-                    <div class="row">
-                        <div class="col s7 m7">
-                            <i class="material-icons background-round mt-5">timeline</i>
-                            <p>Categorias</p>
-                        </div>
-                        <div class="col s5 m5 right-align">
-                            <h5 class="mb-0">{{categoriesInfos?.total || '-'}}</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="col s12 m4 l4 x13">
+      <div class="card gradient-45deg-green-teal white-text">
+        <div class="card-content">
+          <div class="row">
+            <div class="col s7 m7">
+              <i class="material-icons background-round mt-5">timeline</i>
+              <p>Vendas</p>
+            </div>
+            <div class="col s5 m5 right-align">
+              <h5 class="mb-0">{{ salesInfos?.total || "-" }}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 m4 l4 x13">
+      <div class="card gradient-45deg-red-pink white-text">
+        <div class="card-content">
+          <div class="row">
+            <div class="col s7 m7">
+              <i class="material-icons background-round mt-5">timeline</i>
+              <p>Categorias</p>
+            </div>
+            <div class="col s5 m5 right-align">
+              <h5 class="mb-0">{{ categoriesInfos?.total || "-" }}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="row">
-    <div class="section">
-        <div class="col s12">
-            <ul class="collection">
-                <li class="collection-header center"><h4>Atividades</h4></li>
+  <div class="section">
+    <div class="col s12">
+      <ul class="collection">
+        <li class="collection-header center"><h4>Atividades</h4></li>
 
-                <li *ngFor="let item of feedsInfos?.data" class="collection-item">{{ item?.hour }} {{ item?.action }}</li>
-              </ul>
-        </div>
+        <li *ngFor="let item of feedsInfos?.data" class="collection-item">
+          {{ item?.hour }} {{ item?.action }}
+        </li>
+      </ul>
     </div>
+  </div>
 </div>

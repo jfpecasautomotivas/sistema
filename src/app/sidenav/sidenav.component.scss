@@ -1,52 +1,56 @@
 @import "../vars";
 
 .sidenav {
-    background: $black-600;
+  background: $black-600;
+  color: white;
+  top: 0px;
+
+  .material-icons {
+    color: white !important;
+  }
+
+  li:hover:not(:first-child) {
+    background-color: $grey-600;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    width: 100%;
+  }
+  li > a {
     color: white;
-  
-    .material-icons {
-      color:white !important;
-    }
 
-    top: 0px;
-    li:hover:not(:first-child) {
-        background-color: $grey-600;
-        border-top-right-radius: 30px;
-        border-bottom-right-radius: 30px;
-        width: 100%;
+    span {
+      color: white;
     }
-    li > a {
-        color: white;
-    }
-    .collapsible-body, 
-    .sidenav.fixed .collapsible-body {
-        background-color: $grey-1000;
-        border-top-right-radius: 30px;
-        border-bottom-right-radius: 30px;
-    }
+  }
+  .collapsible-body,
+  .sidenav.fixed .collapsible-body {
+    background-color: $grey-1000;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+  }
 
-    .divider {
-        height: 5px;
-        background-color: $orange;
-        background-image: linear-gradient(30deg, $orange-100,$orange-200);
-    }    
+  .divider {
+    height: 5px;
+    background-color: $orange;
+    background-image: linear-gradient(30deg, $orange-100, $orange-200);
+  }
 }
 
-.sidenav .collapsible-header, .sidenav.fixed .collapsible-header {
-    padding: 0 26px;
+.sidenav .collapsible-header,
+.sidenav.fixed .collapsible-header {
+  padding: 0 26px;
 }
-
 
 .collapsible li .icon {
-    margin-right: 32px;
-    vertical-align: middle;
-    -ms-transform: rotate(-90deg); /* IE 9 */
-    -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
-    transform: rotate(-90deg);
+  margin-right: 32px;
+  vertical-align: middle;
+  -ms-transform: rotate(-90deg); /* IE 9 */
+  -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
+  transform: rotate(-90deg);
 }
 
 .collapsible li.active .icon {
-    -ms-transform: rotate(0deg); /* IE 9 */
-    -webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
-    transform: rotate(0deg);
+  -ms-transform: rotate(0deg); /* IE 9 */
+  -webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
+  transform: rotate(0deg);
 }

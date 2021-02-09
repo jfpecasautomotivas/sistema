@@ -1,8 +1,6 @@
-<app-loading>
-</app-loading>
-
-<app-navbar [hidden]="hidden"></app-navbar>
-<app-sidenav [hidden]="hidden"></app-sidenav>
-<main style="margin:2% 5% 0% 5%;" [ngClass]="{'inside':!hidden}">
+<app-loading> </app-loading>
+<app-navbar *ngIf="!hidden"></app-navbar>
+<app-sidenav *ngIf="!hidden"></app-sidenav>
+<main style="margin: 2% 5% 0% 5%" [ngClass]="{ inside: !hidden }">
   <router-outlet></router-outlet>
 </main>
