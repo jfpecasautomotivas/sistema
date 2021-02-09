@@ -1,145 +1,191 @@
 <div class="row">
-    <div class="col s12 center">
-        <h3>{{ screenType === 'sell' ? "Dar baixa em produtos" : screenType === 'edit'  ? "Editar estoque" : "Consultar estoque"}}</h3>
-    </div>
+  <div class="col s12 center">
+    <h3>
+      {{
+        screenType === "sell"
+          ? "Dar baixa em produtos"
+          : screenType === "edit"
+          ? "Editar estoque"
+          : "Consultar estoque"
+      }}
+    </h3>
+  </div>
 </div>
 
 <div class="row">
-    <div class="col s12">
-        <h4>Pesquisar</h4>
+  <div class="col s12">
+    <h4>Pesquisar</h4>
+  </div>
+  <form class="col s12">
+    <div class="row">
+      <div class="input-field col m4 s12">
+        <select
+          [(ngModel)]="filterType"
+          name="filterType"
+          id="filterType"
+          placeholder="Título"
+        >
+          <option value="title" selected>Título</option>
+          <option value="ref">Referencia</option>
+        </select>
+        <label for="filterType">Selecione o filtro</label>
+      </div>
+
+      <div class="input-field col m8 s12">
+        <input
+          type="text"
+          placeholder="Título ou Referência do produto"
+          [(ngModel)]="filter"
+          name="filter"
+          (keyup)="search()"
+        />
+        <label for="filter">Título ou Referência do produto</label>
+      </div>
     </div>
-    <form class="col s12">
-        <div class="row">
-            <div class="input-field col m4 s12">
-                <select [(ngModel)]="filterType" name="filterType" id="filterType" placeholder="Título">
-                  <!-- <option value="" disable selected>Título</option> -->
-                  <option value="title" selected>Título</option>
-                  <option value="ref">Referencia</option>
-                </select>                
-                <label for="filterType">Selecione o filtro</label>
-              </div>
-            
-            <div class="input-field col m8 s12">
-                <input type="text" placeholder="Título ou Referência do produto" [(ngModel)]="filter" name="filter" (keyup)="search()">
-                <label for="filter">Título ou Referência do produto</label>
-            </div>
-        </div>
-    </form>
+  </form>
 </div>
 
 <app-pagination
-    [arrayInfos]="productsInfos"
-    moduleUrl="inventory-{{screenType}}"
-    [page]="productsInfos?.current_page"
+  [arrayInfos]="productsInfos"
+  moduleUrl="inventory-{{ screenType }}"
+  [page]="productsInfos?.current_page"
 ></app-pagination>
 
 <table class="responsive-table striped">
-    <thead>
-        <tr>
-            <th>Ref.</th>
-            <th>Nome</th>
-            <th>Custo</th>
-            <th>Valor Venda</th>
-            <th>Aplicação</th>
-            <th>Quantidade</th>
-            <th *ngIf="screenType === 'sell'">Baixa</th>
-            <th *ngIf="screenType === 'edit'">Editar</th>
-            <th *ngIf="screenType === 'add'">Adicionar</th>
-            <th *ngIf="loggedUser?.role_id == 1 && screenType === 'edit'">Excluir</th>
-        </tr>
-    </thead>
+  <thead>
+    <tr>
+      <th>Ref.</th>
+      <th>Nome</th>
+      <th>Custo</th>
+      <th>Valor Venda</th>
+      <th>Aplicação</th>
+      <th>Quantidade</th>
+      <th *ngIf="screenType === 'sell'">Baixa</th>
+      <th *ngIf="screenType === 'edit'">Editar</th>
+      <th *ngIf="screenType === 'add'">Adicionar</th>
+      <th *ngIf="loggedUser?.role_id == 1 && screenType === 'edit'">Excluir</th>
+    </tr>
+  </thead>
 
-    <tbody>
-        <tr *ngFor="let product of productsInfos?.data">
-            <td>{{ product.ref }}</td>
-            <td>{{ product.title }}</td>
-            <td>{{ product.value_buy }}</td>
-            <td>{{ product.value_sell }}</td>
-            <td id="application">{{ product.application }}</td>
-            <td>{{ product.amount }}</td>
-            <td *ngIf="screenType === 'sell'">
-                <a class="green-text modal-trigger clickable" data-target="sells" (click)="selectProduct(product)">
-                    <i class="material-icons">
-                        shopping_cart
-                    </i>
-                </a>
-            </td>
-            <td *ngIf="screenType === 'edit'">
-                <a class="orange-text" routerLink="//products/{{product.id}}">
-                    <i class="material-icons">
-                        create
-                    </i>
-                </a>
-            </td>
-            <td *ngIf="screenType === 'add'">
-                <a class="green-text darken-1 modal-trigger clickable add" hover-class="orange-text" data-target="add-amount" (click)="selectProduct(product)">
-                    <i class="material-icons">
-                        add
-                    </i>
-                </a>
-            </td>
-            <td *ngIf="loggedUser?.role_id == 1 && screenType === 'edit'">
-                <a class="red-text clickable" (click)="delete(product)">
-                    <i class="material-icons">
-                        delete
-                    </i>
-                </a>
-            </td>
-        </tr>
-    </tbody>
+  <tbody>
+    <tr *ngFor="let product of productsInfos?.data">
+      <td>{{ product.ref }}</td>
+      <td>{{ product.title }}</td>
+      <td>R$ {{ cashMask(product.value_cost) }}</td>
+      <td>R$ {{ cashMask(product.value_sell) }}</td>
+      <td id="application">{{ product.application }}</td>
+      <td>{{ product.amount }}</td>
+      <td *ngIf="screenType === 'sell'">
+        <a
+          class="green-text modal-trigger clickable"
+          data-target="sells"
+          (click)="selectProduct(product)"
+        >
+          <i class="material-icons"> shopping_cart </i>
+        </a>
+      </td>
+      <td *ngIf="screenType === 'edit'">
+        <a class="orange-text" routerLink="//products/{{ product.id }}">
+          <i class="material-icons"> create </i>
+        </a>
+      </td>
+      <td *ngIf="screenType === 'add'">
+        <a
+          class="green-text darken-1 modal-trigger clickable add"
+          hover-class="orange-text"
+          data-target="add-amount"
+          (click)="selectProduct(product)"
+        >
+          <i class="material-icons"> add </i>
+        </a>
+      </td>
+      <td *ngIf="loggedUser?.role_id == 1 && screenType === 'edit'">
+        <a class="red-text clickable" (click)="delete(product)">
+          <i class="material-icons"> delete </i>
+        </a>
+      </td>
+    </tr>
+  </tbody>
 </table>
 <app-pagination
-    [arrayInfos]="productsInfos"
-    moduleUrl="inventory-{{screenType}}"
-    [page]="productsInfos?.current_page"
+  [arrayInfos]="productsInfos"
+  moduleUrl="inventory-{{ screenType }}"
+  [page]="productsInfos?.current_page"
 ></app-pagination>
 
 <!-- Modal Structure -->
 <div id="sells" class="modal sells">
-    <div class="modal-content">
-        <h4>Dar baixa em {{ selectedProduct?.title }}</h4>
-        <form class="col s12" [formGroup]="saleForm">
-            <div class="row">
-                <div class="input-field col s12">
-                    <input type="number" placeholder="Quantidade" formControlName="amount" name="amount">
-                </div>
-            </div>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <div class="row">
-            <div class="col s6 m3 push-sm">
-                <button class="modal-close btn grey lighten-2 black-text">Fechar</button>
-            </div>
-            <div class="col s6 m3 push-m6">
-                <button class="waves-effect waves-orange btn orange darken-1" (click)="sell()">Registrar</button>
-            </div>
+  <div class="modal-content">
+    <h4>Dar baixa em {{ selectedProduct?.title }}</h4>
+    <form class="col s12" [formGroup]="saleForm">
+      <div class="row">
+        <div class="input-field col s12">
+          <input
+            type="number"
+            placeholder="Quantidade"
+            formControlName="amount"
+            name="amount"
+          />
         </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div class="row">
+      <div class="col s6 m3 push-sm">
+        <button class="modal-close btn grey lighten-2 black-text">
+          Fechar
+        </button>
+      </div>
+      <div class="col s6 m3 push-m6">
+        <button
+          class="waves-effect waves-orange btn orange darken-1"
+          (click)="sell()"
+        >
+          Registrar
+        </button>
+      </div>
     </div>
+  </div>
 </div>
 
 <!-- Modal Structure -->
 <div id="add-amount" class="modal">
-    <div class="modal-content">
-        <h4>Adicionar ao estoque {{ selectedProduct?.title }}</h4>
-        <span>Atualmente possui <strong class="succes">{{ selectedProduct?.amount }} itens</strong> </span>
-        <form class="col s12" >
-            <div class="row">
-                <div class="input-field col s12">
-                    <input type="number" placeholder="Quantidade" [(ngModel)]="amount" name="amount">
-                    <label for="amount">Quantidade que deseja adicionar</label>
-                </div>
-            </div>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <div class="row">
-            <div class="col s3 push-s3">
-                <button class="modal-close btn grey lighten-2 black-text">Fechar</button>
-            </div>
-            <div class="col s3 push-s3">
-                <button class="waves-effect waves-orange btn orange darken-1" (click)="addAmount()">Adicionar</button>
-            </div>
+  <div class="modal-content">
+    <h4>Adicionar ao estoque {{ selectedProduct?.title }}</h4>
+    <span
+      >Atualmente possui
+      <strong class="succes">{{ selectedProduct?.amount }} itens</strong>
+    </span>
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <input
+            type="number"
+            placeholder="Quantidade"
+            [(ngModel)]="amount"
+            name="amount"
+          />
+          <label for="amount">Quantidade que deseja adicionar</label>
         </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div class="row">
+      <div class="col s3 push-s3">
+        <button class="modal-close btn grey lighten-2 black-text">
+          Fechar
+        </button>
+      </div>
+      <div class="col s3 push-s3">
+        <button
+          class="waves-effect waves-orange btn orange darken-1"
+          (click)="addAmount()"
+        >
+          Adicionar
+        </button>
+      </div>
     </div>
+  </div>
 </div>
