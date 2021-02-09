@@ -2,9 +2,10 @@
   "name": "front-end",
   "version": "0.2.0",
   "scripts": {
+    "deploy": "npx angular-cli-ghpages --dir=dist/front-end",
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod --base-href 'https://jfpecasautomotivas.github.io/sistema/'",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
