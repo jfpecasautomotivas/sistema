@@ -5,7 +5,7 @@
     "deploy": "npx angular-cli-ghpages --dir=dist/front-end",
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --base-href 'https://jfpecasautomotivas.github.io/sistema/'",
+    "build": "ng build --prod --base-href https://jfpecasautomotivas.github.io/sistema/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
