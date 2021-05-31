@@ -1,117 +1,132 @@
 <form
-  class="col s8 card-panel"
-  [formGroup]="productForm"
-  autocomplete="off"
-  autocomplete="false"
+	class="col s8 card-panel"
+	[formGroup]="productForm"
+	autocomplete="off"
+	autocomplete="false"
 >
-  <div class="row">
-    <div class="col s12 center-align">
-      <h4>{{this.productForm?.value?.id ? "Editar" : "Cadastrar"}} Produtos</h4>
-    </div>
-  </div>
-  <div class="row">    
-    <div class="input-field col m4 s6">
-      <input type="text" placeholder="Nome da peça" formControlName="title" />
-      <label for="title">Título</label>
-      
-    </div>
-    <div class="input-field col m4 s6">
-      <input
-        type="text"
-        placeholder="Referência"
-        formControlName="ref"
-        name="ref"
-        [ngClass]="{
-          'validate invalid': formControls?.ref?.errors?.unavailable
-        }"
-      />
-      <label for="ref">Referência</label>
-      <span
-        *ngIf="formControls?.ref?.errors?.unavailable"
-        data-error="Referência já cadastrada"
-        data-succes="right"
-        class="helper-text"
-      ></span>
-    </div>
-    <div class="input-field col m2 s6">
-      <input type="number" placeholder="Quantidade" formControlName="amount" name="amount"/>
-      <label for="amount">Quantidade</label>
-    </div>
-    <div class="input-field col m2 s6">
-      <input type="number" placeholder="Notificar abaixo de" value="1" formControlName="limit_amount" name="limit_amount"/>
-      <label for="limit_amount">Estoque Mínimo</label>
-    </div>
-  </div>
-  <div class="row">
-    <div class="input-field col m4 s6">
-      <label for="value_cost">Valor de custo</label>
-      <input
-        type="text"
-        placeholder="Valor de custo"
-        formControlName="value_cost"
-        name="value_cost"
-        currencyMask
-        [options]="{
-          prefix: 'R$ ',
-          thousands: '.',
-          decimal: ',',
-          align: 'left'
-        }"
-      />
-    </div>
-    <div class="input-field col m4 s6">
-      <input
-        type="text"
-        placeholder="Valor de venda"
-        formControlName="value_sell"
-        name="value_sell"
-        currencyMask
-        [options]="{
-          prefix: 'R$ ',
-          thousands: '.',
-          decimal: ',',
-          align: 'left'
-        }"
-      />
-      <label for="value_sell">Valor de venda</label>
+	<div class="row">
+		<div class="col s12 center-align">
+			<h4>{{this.productForm?.value?.id ? "Editar" : "Cadastrar"}} Produtos</h4>
+		</div>
+	</div>
 
-    </div>
-    <div class="col m4 s12">
-      <div class="row">
-        <div class="input-field col s12">
-          <ng-select
-            [items]="categories"
-            bindLabel="name"
-            bindValue="id"
-            placeholder="Categorias"
-            formControlName="category_id"
-          ></ng-select>
+	<div class="row">
+		<div class="input-field col m4 s6">
+			<input
+				type="text"
+				placeholder="Nome da peça"
+				formControlName="title"
+			/>
+			<label for="title">Título</label>
+		</div>
+		<div class="input-field col m4 s6">
+			<input
+				type="text"
+				placeholder="Referência"
+				formControlName="ref"
+				name="ref"
+				[ngClass]="{
+				'validate invalid': formControls?.ref?.errors?.unavailable
+				}"
+			/>
+			<label for="ref">Referência</label>
+			<span
+				*ngIf="formControls?.ref?.errors?.unavailable"
+				data-error="Referência já cadastrada"
+				data-succes="right"
+				class="helper-text"
+			></span>
+		</div>
+		<div class="input-field col m2 s6">
+			<input
+				type="number"
+				placeholder="Quantidade"
+				formControlName="amount"
+				name="amount"
+			/>
+			<label for="amount">Quantidade</label>
+		</div>
+		<div class="input-field col m2 s6">
+			<input
+				type="number"
+				placeholder="Notificar abaixo de"
+				value="1"
+				formControlName="limit_amount"
+				name="limit_amount"
+			/>
+			<label for="limit_amount">Estoque Mínimo</label>
+		</div>
+	</div>
 
-        </div>
-      </div>
-    </div>
-  </div>
+	<div class="row">
+		<div class="input-field col m4 s6">
+			<label for="value_cost">Valor de custo</label>
+			<input
+				type="text"
+				placeholder="Valor de custo"
+				formControlName="value_cost"
+				name="value_cost"
+				currencyMask
+				[options]="{
+					prefix: 'R$ ',
+					thousands: '.',
+					decimal: ',',
+					align: 'left'
+				}"
+			/>
+		</div>
+		<div class="input-field col m4 s6">
+			<input
+				type="text"
+				placeholder="Valor de venda"
+				formControlName="value_sell"
+				name="value_sell"
+				currencyMask
+				[options]="{
+					prefix: 'R$ ',
+					thousands: '.',
+					decimal: ',',
+					align: 'left'
+				}"
+			/>
+			<label for="value_sell">Valor de venda</label>
+		</div>
+		<div class="col m4 s12">
+			<div class="row">
+				<div class="input-field col s12">
+				<ng-select
+					[items]="categories"
+					bindLabel="name"
+					bindValue="id"
+					placeholder="Categorias"
+					formControlName="category_id"
+				></ng-select>
 
-  <div class="row">
-    <div class="input-field col s12">
-      <textarea
-        id="textarea1"
-        class="materialize-textarea"
-        formControlName="application"
-      ></textarea>
-      <label for="textarea1">Aplicação</label>
-    </div>
-  </div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-  <div class="row center-align">
-    <div class="col m3 s6">
-      <button
-        class="btn orange darken-1"
-        (click)="onSubmit()"
-        [disabled]="productForm?.invalid || loading"
-      >
-        {{this.productForm?.value?.id ? "Salvar" : "Cadastrar"}}
-      </button>
-    </div>
-  </div>
+	<div class="row">
+		<div class="input-field col s12">
+			<textarea
+				id="textarea1"
+				class="materialize-textarea"
+				formControlName="application"
+			></textarea>
+			<label for="textarea1">Aplicação</label>
+		</div>
+	</div>
+
+	<div class="row center-align">
+		<div class="col m3 s6">
+			<button
+				class="btn orange darken-1"
+				(click)="onSubmit()"
+				[disabled]="productForm?.invalid || loading"
+			>
+				{{this.productForm?.value?.id ? "Salvar" : "Cadastrar"}}
+			</button>
+		</div>
+	</div>
 </form>
