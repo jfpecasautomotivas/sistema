@@ -14,7 +14,7 @@ export const environment: Environment = {
 	getInventoryDownUrl: "https://erpautopecas.herokuapp.com/api/reports/pdf/get-inventory-down-products",
 	downloadInventoryDownUrl: "https://erpautopecas.herokuapp.com/api/reports/pdf/download-inventory-down-products"
 }
-let hml: boolean
+let hml: boolean = false
 
 if (hml) {
 	environment.production = false,

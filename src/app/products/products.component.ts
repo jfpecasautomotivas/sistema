@@ -49,11 +49,7 @@ export class ProductsComponent implements OnInit {
 						html: "Atualizado com sucesso",
 						classes:'succes'
 					}),
-					error => M.toast({
-						html: `Ocorreu um erro ao atualizar o produto:
-						<br><span class="error">${error}</span>`,
-						classes:'fail'
-					}),
+					error => this.handleError(error),
 					() => this.loading = false
 				)
 		} else {
@@ -66,15 +62,7 @@ export class ProductsComponent implements OnInit {
 						})
 						this.productForm.reset()
 					},
-					error => {
-						M.toast({
-							html: `Ocorreu um erro ao cadastrar o produto:
-							<br><span class="error">${error}</span>`,
-							classes:'fail'
-						})
-						this.handleError(error)
-						this.loading = false
-					},
+					error => this.handleError(error),
 					() => this.loading = false
 				)
 		}
