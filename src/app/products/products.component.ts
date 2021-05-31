@@ -50,7 +50,8 @@ export class ProductsComponent implements OnInit {
 						classes:'succes'
 					}),
 					error => M.toast({
-						html: "Ocorreu um erro ao atualizar o produto: " + error,
+						html: `Ocorreu um erro ao atualizar o produto:
+						<br><span class="error">${error}</span>`,
 						classes:'fail'
 					}),
 					() => this.loading = false
@@ -67,7 +68,8 @@ export class ProductsComponent implements OnInit {
 					},
 					error => {
 						M.toast({
-							html: "Ocorreu um erro ao cadastrar o produto: " + error,
+							html: `Ocorreu um erro ao cadastrar o produto:
+							<br><span class="error">${error}</span>`,
 							classes:'fail'
 						})
 						this.handleError(error)
@@ -89,7 +91,8 @@ export class ProductsComponent implements OnInit {
 					)
 				},
 				error => M.toast({
-					html: "Ocorreu um erro ao buscar o produto: " + error,
+					html: `Ocorreu um erro ao buscar o produto:
+					<br><span class="error">${error}</span>`,
 					classes:'fail'
 				})
 			)
@@ -100,7 +103,8 @@ export class ProductsComponent implements OnInit {
 			.subscribe((categories:any) => {
 				this.categories = categories,
 				error => M.toast({
-					html: "Ocorreu um erro ao buscar as categorias: " + error,
+					html: `Ocorreu um erro ao buscar as categorias:
+					<br><span class="error">${error}</span>`,
 					classes:'fail'
 				})
 			})
@@ -109,8 +113,11 @@ export class ProductsComponent implements OnInit {
 	handleError = (e): void => {
 		const formFields = Object.keys(this.productForm.value)
 		const errorsFields = Object.keys(e)
-		let fields:any = formFields.filter(value => errorsFields.includes(value))
-		fields.map(f => this.productForm.controls[f].setErrors({'unavailable': true}))
+		let fields:any = formFields.filter(val => errorsFields.includes(val))
+
+		fields.map(f => {
+			this.productForm.controls[f].setErrors({'unavailable': true})
+		})
 	}
 
 	clean = (): void => {

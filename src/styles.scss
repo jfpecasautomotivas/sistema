@@ -50,6 +50,12 @@ header, main, footer {
   font-size: 1em;
 }
 
+.error {
+	font-size: 8px;
+	padding: 10px;
+	color: white;
+}
+
 .background-round {
   padding: 15px;
   border-radius: 50%;
@@ -119,7 +125,7 @@ input:not([type]):focus:not([readonly]) + label, input[type="text"]:not(.browser
   //   box-shadow: 0 0px 20px 0 black;
 
   // }
-  
+
   input:not([type]):focus:not([readonly]), input[type="text"]:not(.browser-default):focus:not([readonly]), input[type="password"]:not(.browser-default):focus:not([readonly]), input[type="email"]:not(.browser-default):focus:not([readonly]), input[type="url"]:not(.browser-default):focus:not([readonly]), input[type="time"]:not(.browser-default):focus:not([readonly]), input[type="date"]:not(.browser-default):focus:not([readonly]), input[type="datetime"]:not(.browser-default):focus:not([readonly]), input[type="datetime-local"]:not(.browser-default):focus:not([readonly]), input[type="tel"]:not(.browser-default):focus:not([readonly]), input[type="number"]:not(.browser-default):focus:not([readonly]), input[type="search"]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
     border-bottom: none;
     box-shadow: 0 0px 10px 0 #ff814c;
