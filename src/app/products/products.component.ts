@@ -106,6 +106,7 @@ export class ProductsComponent implements OnInit {
 		fields.map(f => {
 			this.productForm.controls[f].setErrors({'unavailable': true})
 		})
+		this.loading = false
 	}
 
 	clean = (): void => {
