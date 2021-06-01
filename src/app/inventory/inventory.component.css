@@ -18,4 +18,8 @@ td a:hover i {
 td#application {
   font-size: .8em;
 }
+
+.value {
+  min-width: 125px;
+}
 /*# sourceMappingURL=inventory.component.css.map */
