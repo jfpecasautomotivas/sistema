@@ -17,6 +17,15 @@ nav, .sidenav {
     margin-top: 0.5em;
 }
 
+.title {
+	color: $grey-400;
+}
+
+.notifications-header {
+	display: flex;
+	justify-content: space-between;
+}
+
 .badge-point {
     width: 10px;
     height: 10px;
@@ -48,38 +57,40 @@ nav, .sidenav {
         max-height: 50%;
         overflow-y: auto;
         top: 2em;
-        color: $white;
+        color: $grey-400;
         box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.12), 0 1px 5px 0 rgba(0,0,0,.2);
-    
+
         li {
             padding: 1em 2em;
             background: $black-600;
+			color: $grey-400;
+
             .title {
                 vertical-align: super;
                 margin-right: 1em;
             }
-    
+
             &.right-align {
                 padding-bottom: 1em;
             }
-    
+
             &.unread {
                 background: $grey-400;
                 color: black;
             }
-    
+
             &.divider {
                 padding: 0;
                 width: 100%;
                 height: 5px;
                 background-color: $orange;
                 background-image: linear-gradient(30deg, $orange-100,$orange-200);
-            }        
-    
+            }
+
             .material-icons {
                 margin-right: 5px;
             }
-    
+
             .material-icons.mark-as-read {
                 padding: 0.1em;
                 border-radius: 2px;
@@ -111,9 +122,9 @@ nav, .sidenav {
         max-height: 50%;
         overflow-y: auto;
         top: 2em;
-        color: $white;
+        color: $grey-400;
         box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.12), 0 1px 5px 0 rgba(0,0,0,.2);
-    
+
         li {
             padding: 1em 2em;
             background: $black-600;
@@ -121,28 +132,28 @@ nav, .sidenav {
                 vertical-align: super;
                 margin-right: 1em;
             }
-    
+
             &.right-align {
                 padding-bottom: 1em;
             }
-    
+
             &.unread {
                 background: $grey-400;
                 color: black;
             }
-    
+
             &.divider {
                 padding: 0;
                 width: 100%;
                 height: 5px;
                 background-color: $orange;
                 background-image: linear-gradient(30deg, $orange-100,$orange-200);
-            }        
-    
+            }
+
             .material-icons {
                 margin-right: 5px;
             }
-    
+
             .material-icons.mark-as-read {
                 padding: 0.1em;
                 border-radius: 2px;
@@ -159,9 +170,9 @@ nav, .sidenav {
     0%   {
        box-shadow: 0 0 20px 3px $orange;
     }
-    100% { 
+    100% {
       box-shadow: 0 0 20px 10px $orange;
-    }    
+    }
  }
 
 ul#nav-mobile li {
