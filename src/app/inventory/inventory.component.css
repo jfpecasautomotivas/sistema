@@ -1,3 +1,11 @@
+@media only screen and (max-width: 1023px) {
+  td {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
 #add-amount form {
   margin-top: 1em;
 }
@@ -9,5 +17,9 @@ td a:hover i {
 
 td#application {
   font-size: .8em;
+}
+
+.value {
+  min-width: 125px;
 }
 /*# sourceMappingURL=inventory.component.css.map */
