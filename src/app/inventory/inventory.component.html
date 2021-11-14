@@ -18,28 +18,14 @@
 	</div>
 	<form class="col s12">
 		<div class="row">
-			<div class="input-field col m4 s12">
-				<select
-					[(ngModel)]="filterType"
-					name="filterType"
-					id="filterType"
-					placeholder="Título"
-				>
-					<option value="title" selected>Título</option>
-					<option value="ref">Referencia</option>
-				</select>
-				<label for="filterType">Selecione o filtro</label>
-			</div>
-
-			<div class="input-field col m8 s12">
+			<div class="input-field col s12">
 				<input
 					type="text"
-					placeholder="Título ou Referência do produto"
+					placeholder="Título, Referência ou Aplicação do produto"
 					[(ngModel)]="filter"
 					name="filter"
 					(keyup)="search()"
 				/>
-				<label for="filter">Título ou Referência do produto</label>
 			</div>
 		</div>
 	</form>

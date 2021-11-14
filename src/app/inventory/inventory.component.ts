@@ -25,6 +25,7 @@ export class InventoryComponent implements OnInit {
 	public screenType: string = "";
 	public saleForm: FormGroup;
 	public page;
+	public searches = [];
 
 	constructor(
 		private route: ActivatedRoute,
@@ -125,8 +126,13 @@ export class InventoryComponent implements OnInit {
 			);
 
 	search = (filter?, page?) => {
-		this.service
-			.search(filter ?? `${this.filterType}=${this.filter}`, page)
+		this.searches.forEach(search => {
+			clearTimeout(search);
+		});
+
+		this.searches.push(setTimeout(() => {
+			this.service
+			.search(filter ?? `${this.filterType}=${this.filter || ''}`, page)
 			.subscribe(
 				(products: Pagination) => {
 					this.productsInfos = products;
@@ -134,6 +140,7 @@ export class InventoryComponent implements OnInit {
 				},
 				(error) => M.toast({ html: error, classes: "fail" })
 			);
+		}, 400));
 	};
 	haveFilter = () => this.service.filter;
 

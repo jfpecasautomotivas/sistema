@@ -9,7 +9,7 @@
         <li class="clickable icon-pulldown" (click)="showNotifications()">
           <span class="material-icons"> notifications </span>
           <span
-            *ngIf="notifications?.data[0]?.read_at == null"
+            *ngIf="!notifications?.data[0]?.read_at"
             class="badge-point"
           ></span>
         </li>
